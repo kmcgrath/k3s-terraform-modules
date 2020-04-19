@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-deployment
+spec:
+  replicas: 9
+  selector:
+    matchLabels:
+      app: echo-server
+  template:
+    metadata:
+      labels:
+        app: echo-server
+    spec:
+      containers:
+        - name: echo-server
+          image: jmalloc/echo-server
+          ports:
+            - name: http-port
+              containerPort: 8080
+          resources:
+            limits:
+              cpu: "1"
+            requests:
+              cpu: "0.5"
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: echo-service
+spec:
+  ports:
+    - name: http-port
+      port: 80
+      targetPort: http-port
+      protocol: TCP
+  selector:
+    app: echo-server
+  type: LoadBalancer
