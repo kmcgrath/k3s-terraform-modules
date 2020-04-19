@@ -14,7 +14,7 @@ Modules for testing and development of k3s with Ocean by Spot
 Provision master and Ocean workers
 
 ```
-module "spotinst_ocean_controller" {
+module "ocean_k3s_aws" {
   source = "github.com/kmcgrath/k3s-terraform-modules//modules/ocean_k3s_aws"
 
   ocean_account               = "act-XXXXXX"
@@ -37,8 +37,8 @@ module "spotinst_ocean_controller" {
 Provision master and Ocean workers
 
 ```
-module "spotinst_ocean_controller" {
-  source = "github.com/kmcgrath/k3s-terraform-modules//modules/ocean_k3s_aws"
+module "k3s_aws" {
+  source = "github.com/kmcgrath/k3s-terraform-modules//modules/k3s_aws"
 
   region                      = "us-east-1"
   ssh_key_name                = "my-key"
