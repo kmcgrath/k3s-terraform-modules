@@ -31,7 +31,7 @@ data "aws_ami" "latest_amzn" {
 resource "spotinst_ocean_aws" "example" {
   name = var.cluster_name
   controller_id = var.cluster_name
-  region = "us-east-1"
+  region = var.region
 
   max_size         = 100
   min_size         = 0
